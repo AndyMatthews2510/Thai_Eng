@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thai Tutor</title>
+
+<!-- PWA / iOS meta tags -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Thai Tutor">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a1208">
+<meta name="description" content="On-demand Thai vocabulary lessons for self-study">
+
+<!-- iOS touch icon (what appears on home screen) -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNpcmNsZS1jbGlwIj4KICAgICAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYTFhMGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWExMjA4Ii8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJwZXRhbC1pbm5lciIgY3g9IjUwJSIgY3k9IjMwJSIgcj0iNzAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZTRjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjOWE4NGMiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InBldGFsLW91dGVyIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzlhODRjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhhNjgyMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iY2VudGVyLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmOGYwZDgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZThjODYwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI5MCIgZmlsbD0idXJsKCNiZy1ncmFkKSIvPgoKICA8IS0tIEdvbGQgYm9yZGVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjgzIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NpcmNsZS1jbGlwKSI+CgogIDwhLS0gPT09IE9VVEVSIFBFVEFMUyAoOCwgcm90YXRlZCAyMi41wrApID09PSAtLT4KICA8IS0tIEVhY2ggb3V0ZXIgcGV0YWw6IGxvbmdlciwgcm91bmRlciwgZGVlcGVyIGdvbGQgLS0+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSA5MCA5MCkiPgogICAgPCEtLSBQZXRhbCB1cCAtLT4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDAgOTAgOTApIi8+CiAgICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI0NiIgcng9IjEzIiByeT0iMjgiIGZpbGw9InVybCgjcGV0YWwtb3V0ZXIpIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSA5MCA5MCkiLz4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMzE1IDkwIDkwKSIvPgogIDwvZz4KCiAgPCEtLSA9PT0gSU5ORVIgUEVUQUxTICg4LCBheGlzLWFsaWduZWQpID09PSAtLT4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDQ1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDEzNSA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgOTAgOTApIi8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNTQiIHJ4PSIxMSIgcnk9IjIyIiBmaWxsPSJ1cmwoI3BldGFsLWlubmVyKSIgb3BhY2l0eT0iMC45NyIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDI3MCA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgOTAgOTApIi8+CgogIDwhLS0gQ2VudGVyIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxOCIgZmlsbD0idXJsKCNjZW50ZXItZ3JhZCkiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxNCIgZmlsbD0iI2YwZTRjMCIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNlOGM4NjAiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjYzlhODRjIi8+CgogIDwhLS0gRmluZSBwZXRhbCB2ZWluIGxpbmVzIG9uIGlubmVyIHBldGFscyAtLT4KICA8ZyBvcGFjaXR5PSIwLjI1IiBzdHJva2U9IiNmMGU0YzAiIHN0cm9rZS13aWR0aD0iMC44IiBmaWxsPSJub25lIj4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA5MCA5MCkiLz4KICA8L2c+CgogIDwvZz4KPC9zdmc+Cg==">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNpcmNsZS1jbGlwIj4KICAgICAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYTFhMGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWExMjA4Ii8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJwZXRhbC1pbm5lciIgY3g9IjUwJSIgY3k9IjMwJSIgcj0iNzAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZTRjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjOWE4NGMiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InBldGFsLW91dGVyIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzlhODRjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhhNjgyMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iY2VudGVyLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmOGYwZDgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZThjODYwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI5MCIgZmlsbD0idXJsKCNiZy1ncmFkKSIvPgoKICA8IS0tIEdvbGQgYm9yZGVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjgzIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NpcmNsZS1jbGlwKSI+CgogIDwhLS0gPT09IE9VVEVSIFBFVEFMUyAoOCwgcm90YXRlZCAyMi41wrApID09PSAtLT4KICA8IS0tIEVhY2ggb3V0ZXIgcGV0YWw6IGxvbmdlciwgcm91bmRlciwgZGVlcGVyIGdvbGQgLS0+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSA5MCA5MCkiPgogICAgPCEtLSBQZXRhbCB1cCAtLT4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDAgOTAgOTApIi8+CiAgICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI0NiIgcng9IjEzIiByeT0iMjgiIGZpbGw9InVybCgjcGV0YWwtb3V0ZXIpIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSA5MCA5MCkiLz4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMzE1IDkwIDkwKSIvPgogIDwvZz4KCiAgPCEtLSA9PT0gSU5ORVIgUEVUQUxTICg4LCBheGlzLWFsaWduZWQpID09PSAtLT4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDQ1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDEzNSA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgOTAgOTApIi8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNTQiIHJ4PSIxMSIgcnk9IjIyIiBmaWxsPSJ1cmwoI3BldGFsLWlubmVyKSIgb3BhY2l0eT0iMC45NyIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDI3MCA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgOTAgOTApIi8+CgogIDwhLS0gQ2VudGVyIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxOCIgZmlsbD0idXJsKCNjZW50ZXItZ3JhZCkiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxNCIgZmlsbD0iI2YwZTRjMCIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNlOGM4NjAiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjYzlhODRjIi8+CgogIDwhLS0gRmluZSBwZXRhbCB2ZWluIGxpbmVzIG9uIGlubmVyIHBldGFscyAtLT4KICA8ZyBvcGFjaXR5PSIwLjI1IiBzdHJva2U9IiNmMGU0YzAiIHN0cm9rZS13aWR0aD0iMC44IiBmaWxsPSJub25lIj4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA5MCA5MCkiLz4KICA8L2c+CgogIDwvZz4KPC9zdmc+Cg==">
+
+<!-- Inline manifest via JS -->
+<script>
+const manifestData = {
+  name: "Thai Tutor",
+  short_name: "Thai Tutor",
+  description: "On-demand Thai vocabulary lessons",
+  start_url: ".",
+  display: "standalone",
+  background_color: "#1a1208",
+  theme_color: "#1a1208",
+  orientation: "portrait",
+  icons: [
+    {
+      src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNpcmNsZS1jbGlwIj4KICAgICAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYTFhMGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWExMjA4Ii8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJwZXRhbC1pbm5lciIgY3g9IjUwJSIgY3k9IjMwJSIgcj0iNzAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZTRjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjOWE4NGMiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InBldGFsLW91dGVyIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzlhODRjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhhNjgyMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iY2VudGVyLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmOGYwZDgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZThjODYwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI5MCIgZmlsbD0idXJsKCNiZy1ncmFkKSIvPgoKICA8IS0tIEdvbGQgYm9yZGVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjgzIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NpcmNsZS1jbGlwKSI+CgogIDwhLS0gPT09IE9VVEVSIFBFVEFMUyAoOCwgcm90YXRlZCAyMi41wrApID09PSAtLT4KICA8IS0tIEVhY2ggb3V0ZXIgcGV0YWw6IGxvbmdlciwgcm91bmRlciwgZGVlcGVyIGdvbGQgLS0+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSA5MCA5MCkiPgogICAgPCEtLSBQZXRhbCB1cCAtLT4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDAgOTAgOTApIi8+CiAgICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI0NiIgcng9IjEzIiByeT0iMjgiIGZpbGw9InVybCgjcGV0YWwtb3V0ZXIpIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSA5MCA5MCkiLz4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMzE1IDkwIDkwKSIvPgogIDwvZz4KCiAgPCEtLSA9PT0gSU5ORVIgUEVUQUxTICg4LCBheGlzLWFsaWduZWQpID09PSAtLT4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDQ1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDEzNSA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgOTAgOTApIi8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNTQiIHJ4PSIxMSIgcnk9IjIyIiBmaWxsPSJ1cmwoI3BldGFsLWlubmVyKSIgb3BhY2l0eT0iMC45NyIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDI3MCA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgOTAgOTApIi8+CgogIDwhLS0gQ2VudGVyIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxOCIgZmlsbD0idXJsKCNjZW50ZXItZ3JhZCkiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxNCIgZmlsbD0iI2YwZTRjMCIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNlOGM4NjAiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjYzlhODRjIi8+CgogIDwhLS0gRmluZSBwZXRhbCB2ZWluIGxpbmVzIG9uIGlubmVyIHBldGFscyAtLT4KICA8ZyBvcGFjaXR5PSIwLjI1IiBzdHJva2U9IiNmMGU0YzAiIHN0cm9rZS13aWR0aD0iMC44IiBmaWxsPSJub25lIj4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA5MCA5MCkiLz4KICA8L2c+CgogIDwvZz4KPC9zdmc+Cg==",
+      sizes: "180x180",
+      type: "image/svg+xml",
+      purpose: "any maskable"
+    }
+  ]
+};
+const blob = new Blob([JSON.stringify(manifestData)], {type: 'application/manifest+json'});
+const manifestUrl = URL.createObjectURL(blob);
+const link = document.createElement('link');
+link.rel = 'manifest';
+link.href = manifestUrl;
+document.head.appendChild(link);
+</script>
+
+<!-- iOS splash/startup images approximation via meta -->
+<meta name="apple-touch-startup-image" content="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNpcmNsZS1jbGlwIj4KICAgICAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYTFhMGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWExMjA4Ii8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJwZXRhbC1pbm5lciIgY3g9IjUwJSIgY3k9IjMwJSIgcj0iNzAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZTRjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjOWE4NGMiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InBldGFsLW91dGVyIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzlhODRjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhhNjgyMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iY2VudGVyLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmOGYwZDgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZThjODYwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI5MCIgZmlsbD0idXJsKCNiZy1ncmFkKSIvPgoKICA8IS0tIEdvbGQgYm9yZGVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjgzIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NpcmNsZS1jbGlwKSI+CgogIDwhLS0gPT09IE9VVEVSIFBFVEFMUyAoOCwgcm90YXRlZCAyMi41wrApID09PSAtLT4KICA8IS0tIEVhY2ggb3V0ZXIgcGV0YWw6IGxvbmdlciwgcm91bmRlciwgZGVlcGVyIGdvbGQgLS0+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSA5MCA5MCkiPgogICAgPCEtLSBQZXRhbCB1cCAtLT4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDAgOTAgOTApIi8+CiAgICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI0NiIgcng9IjEzIiByeT0iMjgiIGZpbGw9InVybCgjcGV0YWwtb3V0ZXIpIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSA5MCA5MCkiLz4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMzE1IDkwIDkwKSIvPgogIDwvZz4KCiAgPCEtLSA9PT0gSU5ORVIgUEVUQUxTICg4LCBheGlzLWFsaWduZWQpID09PSAtLT4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDQ1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDEzNSA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgOTAgOTApIi8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNTQiIHJ4PSIxMSIgcnk9IjIyIiBmaWxsPSJ1cmwoI3BldGFsLWlubmVyKSIgb3BhY2l0eT0iMC45NyIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDI3MCA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgOTAgOTApIi8+CgogIDwhLS0gQ2VudGVyIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxOCIgZmlsbD0idXJsKCNjZW50ZXItZ3JhZCkiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxNCIgZmlsbD0iI2YwZTRjMCIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNlOGM4NjAiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjYzlhODRjIi8+CgogIDwhLS0gRmluZSBwZXRhbCB2ZWluIGxpbmVzIG9uIGlubmVyIHBldGFscyAtLT4KICA8ZyBvcGFjaXR5PSIwLjI1IiBzdHJva2U9IiNmMGU0YzAiIHN0cm9rZS13aWR0aD0iMC44IiBmaWxsPSJub25lIj4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA5MCA5MCkiLz4KICA8L2c+CgogIDwvZz4KPC9zdmc+Cg==">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --cream: #faf6ef;
+    --gold: #c9a84c;
+    --gold-light: #f0e4c0;
+    --red: #8b1a1a;
+    --red-dim: #5a1010;
+    --card: #fffdf7;
+    --muted: #8a7a5a;
+    --border: #e8dfc8;
+    --tone-mid: #4a9fd4;
+    --tone-low: #2d6a4f;
+    --tone-falling: #8b1a1a;
+    --tone-high: #c9a84c;
+    --tone-rising: #7b5ea7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+    /* Safe area for iPhone notch/home bar */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 10%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 85% 90%, rgba(139,26,26,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 5rem;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .header-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .header-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header-text { text-align: left; }
+
+  .thai-title {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    line-height: 1;
+    display: block;
+    text-shadow: 0 2px 20px rgba(201,168,76,0.15);
+  }
+
+  .en-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.1rem;
+  }
+
+  /* Install banner */
+  #installBanner {
+    display: none;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 4px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    position: relative;
+  }
+
+  #installBanner strong { color: var(--gold); }
+
+  #closeBanner {
+    position: absolute;
+    top: 0.6rem; right: 0.8rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+  }
+
+  /* Search area */
+  .search-area {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 20px rgba(26,18,8,0.05);
+  }
+
+  .search-label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: stretch;
+  }
+
+  #wordInput {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.75rem 0.9rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    /* Prevent iOS zoom on focus */
+    font-size: 16px;
+  }
+
+  #wordInput:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+
+  #wordInput::placeholder { color: var(--muted); font-style: italic; font-size: 15px; }
+
+  #askBtn {
+    background: var(--red);
+    color: var(--cream);
+    border: none;
+    border-radius: 3px;
+    padding: 0.75rem 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #askBtn:hover { background: var(--red-dim); }
+  #askBtn:active { opacity: 0.85; }
+  #askBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .quick-picks { margin-top: 1rem; }
+
+  .quick-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.45rem;
+    display: block;
+  }
+
+  .picks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .pick {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.22rem 0.55rem;
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--ink);
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .pick:hover, .pick:active {
+    border-color: var(--gold);
+    background: var(--gold-light);
+    color: var(--red);
+  }
+
+  .tone-guide {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tg-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .tg-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+  #loadingState {
+    display: none;
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--muted);
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 26px; height: 26px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 0.8rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-style: italic; font-size: 1rem; }
+
+  #lessonCard {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(26,18,8,0.08);
+    animation: fadeUp 0.4s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.75rem 1.5rem 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .hero-thai {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: clamp(2.8rem, 10vw, 5rem);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-roman {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(0.82rem, 2.5vw, 1rem);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-english {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    color: var(--cream);
+  }
+
+  .tone-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 2px;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-top: 0.5rem;
+  }
+
+  .tone-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .section {
+    padding: 1.3rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .lesson-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .pitfall-box {
+    background: rgba(139,26,26,0.05);
+    border-left: 3px solid var(--red);
+    border-radius: 0 3px 3px 0;
+    padding: 0.9rem 1.1rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .examples-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .example {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.8rem 1rem;
+  }
+
+  .ex-thai {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    font-weight: 400;
+  }
+
+  .ex-roman {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.12rem;
+  }
+
+  .ex-english {
+    font-size: 0.92rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .related-item {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.55rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .related-item:hover, .related-item:active {
+    border-color: var(--gold);
+    background: var(--gold-light);
+  }
+
+  .rel-thai {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .rel-english {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  #errorState {
+    display: none;
+    background: rgba(139,26,26,0.05);
+    border: 1px solid rgba(139,26,26,0.2);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    color: var(--red);
+    font-style: italic;
+  }
+
+  #welcome {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--muted);
+  }
+
+  .welcome-thai {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--border);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  .welcome-text { font-size: 0.95rem; font-style: italic; line-height: 1.6; }
+
+  #historyArea { margin-top: 1.5rem; }
+  .history-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .history-item {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.18rem 0.5rem;
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .history-item:hover, .history-item:active {
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  @media (max-width: 480px) {
+    .hero { grid-template-columns: 1fr; padding: 1.4rem 1.2rem 1rem; }
+    .section { padding: 1.1rem 1.2rem; }
+    .search-area { padding: 1.2rem; }
+    header { padding: 1.5rem 0 1.2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="header-icon">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImNpcmNsZS1jbGlwIj4KICAgICAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODgiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYTFhMGEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWExMjA4Ii8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJwZXRhbC1pbm5lciIgY3g9IjUwJSIgY3k9IjMwJSIgcj0iNzAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZTRjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjOWE4NGMiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InBldGFsLW91dGVyIiBjeD0iNTAlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzlhODRjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhhNjgyMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iY2VudGVyLWdyYWQiIGN4PSI1MCUiIGN5PSI0MCUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmOGYwZDgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZThjODYwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI5MCIgZmlsbD0idXJsKCNiZy1ncmFkKSIvPgoKICA8IS0tIEdvbGQgYm9yZGVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjgzIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOWE4NGMiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjMiLz4KCiAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NpcmNsZS1jbGlwKSI+CgogIDwhLS0gPT09IE9VVEVSIFBFVEFMUyAoOCwgcm90YXRlZCAyMi41wrApID09PSAtLT4KICA8IS0tIEVhY2ggb3V0ZXIgcGV0YWw6IGxvbmdlciwgcm91bmRlciwgZGVlcGVyIGdvbGQgLS0+CiAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSA5MCA5MCkiPgogICAgPCEtLSBQZXRhbCB1cCAtLT4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDAgOTAgOTApIi8+CiAgICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI0NiIgcng9IjEzIiByeT0iMjgiIGZpbGw9InVybCgjcGV0YWwtb3V0ZXIpIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSA5MCA5MCkiLz4KICAgIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjQ2IiByeD0iMTMiIHJ5PSIyOCIgZmlsbD0idXJsKCNwZXRhbC1vdXRlcikiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDkwIDkwKSIvPgogICAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNDYiIHJ4PSIxMyIgcnk9IjI4IiBmaWxsPSJ1cmwoI3BldGFsLW91dGVyKSIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMzE1IDkwIDkwKSIvPgogIDwvZz4KCiAgPCEtLSA9PT0gSU5ORVIgUEVUQUxTICg4LCBheGlzLWFsaWduZWQpID09PSAtLT4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDQ1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDEzNSA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgOTAgOTApIi8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iNTQiIHJ4PSIxMSIgcnk9IjIyIiBmaWxsPSJ1cmwoI3BldGFsLWlubmVyKSIgb3BhY2l0eT0iMC45NyIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogIDxlbGxpcHNlIGN4PSI5MCIgY3k9IjU0IiByeD0iMTEiIHJ5PSIyMiIgZmlsbD0idXJsKCNwZXRhbC1pbm5lcikiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDI3MCA5MCA5MCkiLz4KICA8ZWxsaXBzZSBjeD0iOTAiIGN5PSI1NCIgcng9IjExIiByeT0iMjIiIGZpbGw9InVybCgjcGV0YWwtaW5uZXIpIiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgOTAgOTApIi8+CgogIDwhLS0gQ2VudGVyIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxOCIgZmlsbD0idXJsKCNjZW50ZXItZ3JhZCkiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSIxNCIgZmlsbD0iI2YwZTRjMCIvPgogIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNlOGM4NjAiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjYzlhODRjIi8+CgogIDwhLS0gRmluZSBwZXRhbCB2ZWluIGxpbmVzIG9uIGlubmVyIHBldGFscyAtLT4KICA8ZyBvcGFjaXR5PSIwLjI1IiBzdHJva2U9IiNmMGU0YzAiIHN0cm9rZS13aWR0aD0iMC44IiBmaWxsPSJub25lIj4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDkwIDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA5MCA5MCkiLz4KICAgIDxsaW5lIHgxPSI5MCIgeTE9IjcyIiB4Mj0iOTAiIHkyPSIzOCIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1IDkwIDkwKSIvPgogICAgPGxpbmUgeDE9IjkwIiB5MT0iNzIiIHgyPSI5MCIgeTI9IjM4IiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgOTAgOTApIi8+CiAgICA8bGluZSB4MT0iOTAiIHkxPSI3MiIgeDI9IjkwIiB5Mj0iMzgiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA5MCA5MCkiLz4KICA8L2c+CgogIDwvZz4KPC9zdmc+Cg==" alt="Thai Tutor lotus icon" width="44" height="44">
+    </div>
+    <div class="header-text">
+      <span class="thai-title">เรียนภาษาไทย</span>
+      <span class="en-title">Thai Tutor</span>
+    </div>
+  </header>
+
+  <!-- Install prompt banner (shown on mobile non-PWA) -->
+  <div id="installBanner">
+    <button id="closeBanner" onclick="document.getElementById('installBanner').style.display='none'" aria-label="Close">×</button>
+    <strong>Add to Home Screen</strong><br>
+    Tap the <strong>Share</strong> button in Safari, then <strong>Add to Home Screen</strong> to install Thai Tutor as an app icon.
+  </div>
+
+  <div class="search-area">
+    <label class="search-label" for="wordInput">Enter any Thai word, English word, or phrase</label>
+    <div class="search-row">
+      <input type="text" id="wordInput"
+        placeholder="สวัสดี · hello · I miss you…"
+        autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
+      <button id="askBtn" onclick="fetchLesson()">Teach me ›</button>
+    </div>
+
+    <div class="quick-picks">
+      <span class="quick-label">Start here</span>
+      <div class="picks" id="quickPicks"></div>
+    </div>
+
+    <div class="tone-guide">
+      <span class="tg-item"><span class="tg-dot" style="background:var(--tone-mid)"></span>Mid</span>
+      <span class="tg-item"><span class="tg-dot" style="background:var(--tone-low)"></span>Low</span>
+      <span class="tg-item"><span class="tg-dot" style="background:var(--tone-falling)"></span>Falling</span>
+      <span class="tg-item"><span class="tg-dot" style="background:var(--tone-high)"></span>High</span>
+      <span class="tg-item"><span class="tg-dot" style="background:var(--tone-rising)"></span>Rising</span>
+    </div>
+  </div>
+
+  <div id="welcome">
+    <span class="welcome-thai">ยินดีต้อนรับ</span>
+    <p class="welcome-text">Type any word above — Thai script, romanisation, or English.<br>
+    You'll get the full lesson: tone, usage, pitfalls, and examples.</p>
+  </div>
+
+  <div id="loadingState">
+    <div class="spinner"></div>
+    <p class="loading-text">Preparing your lesson…</p>
+  </div>
+
+  <div id="errorState"></div>
+
+  <div id="lessonCard">
+    <div class="hero" id="heroSection"></div>
+    <div class="sections" id="sectionsArea"></div>
+  </div>
+
+  <div id="historyArea" style="display:none">
+    <p class="history-label">Recent words</p>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+</div>
+
+<script>
+const QUICK_PICKS = [
+  'สวัสดี','ขอบคุณ','อร่อย','เผ็ด','รัก',
+  'กิน','สวย','ไป','ช่วย','ไม่เป็นไร',
+  'น่ารัก','เข้าใจ','คิดถึง','สนุก','เกรงใจ'
+];
+
+const TONE_COLORS = {
+  mid: 'var(--tone-mid)',
+  low: 'var(--tone-low)',
+  falling: 'var(--tone-falling)',
+  high: 'var(--tone-high)',
+  rising: 'var(--tone-rising)',
+};
+
+let history = JSON.parse(localStorage.getItem('thaiTutorHistory') || '[]');
+
+function init() {
+  // Quick picks
+  const picks = document.getElementById('quickPicks');
+  QUICK_PICKS.forEach(w => {
+    const b = document.createElement('button');
+    b.className = 'pick';
+    b.textContent = w;
+    b.onclick = () => { document.getElementById('wordInput').value = w; fetchLesson(); };
+    picks.appendChild(b);
+  });
+
+  document.getElementById('wordInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') fetchLesson();
+  });
+
+  // Restore history display
+  if (history.length) renderHistory();
+
+  // Show install banner on mobile Safari if not already installed as PWA
+  const isStandalone = window.navigator.standalone === true;
+  const isMobile = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const bannerDismissed = localStorage.getItem('installBannerDismissed');
+  if (isMobile && !isStandalone && !bannerDismissed) {
+    document.getElementById('installBanner').style.display = 'block';
+    document.getElementById('closeBanner').onclick = () => {
+      document.getElementById('installBanner').style.display = 'none';
+      localStorage.setItem('installBannerDismissed', '1');
+    };
+  }
+
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    const swCode = `
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+self.addEventListener('fetch', e => {
+  if (e.request.url.includes('anthropic.com') || e.request.url.includes('googleapis.com')) return;
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+});
+`;
+    try {
+      const blob = new Blob([swCode], {type:'application/javascript'});
+      navigator.serviceWorker.register(URL.createObjectURL(blob));
+    } catch(e) {}
+  }
+}
+
+function getToneColor(toneStr) {
+  const t = (toneStr || '').toLowerCase();
+  if (t.includes('falling')) return TONE_COLORS.falling;
+  if (t.includes('rising')) return TONE_COLORS.rising;
+  if (t.includes('high')) return TONE_COLORS.high;
+  if (t.includes('low')) return TONE_COLORS.low;
+  return TONE_COLORS.mid;
+}
+
+function show(id) {
+  ['welcome','loadingState','errorState','lessonCard'].forEach(x => {
+    const el = document.getElementById(x);
+    if (x === id) {
+      el.style.display = x === 'lessonCard' ? 'block' : 'block';
+    } else {
+      el.style.display = 'none';
+    }
+  });
+}
+
+async function fetchLesson() {
+  const input = document.getElementById('wordInput').value.trim();
+  if (!input) return;
+
+  const btn = document.getElementById('askBtn');
+  btn.disabled = true;
+  show('loadingState');
+
+  const prompt = `You are a Thai language tutor. The student asked about: "${input}"
+
+Return ONLY valid JSON (no markdown fences, no extra text) in exactly this structure:
+{
+  "thai": "Thai script",
+  "roman": "Paiboon+ romanisation",
+  "english": "concise English meaning",
+  "tone": "tone name e.g. falling or mid-falling-rising",
+  "category": "one word category label",
+  "lesson": "2-3 sentences on meaning, usage, cultural context",
+  "pitfall": "the single most important mistake English speakers make with this word",
+  "examples": [
+    {"thai": "complete Thai sentence", "roman": "romanisation", "english": "translation"},
+    {"thai": "complete Thai sentence", "roman": "romanisation", "english": "translation"},
+    {"thai": "complete Thai sentence", "roman": "romanisation", "english": "translation"}
+  ],
+  "related": [
+    {"thai": "word", "english": "meaning"},
+    {"thai": "word", "english": "meaning"},
+    {"thai": "word", "english": "meaning"},
+    {"thai": "word", "english": "meaning"}
+  ]
+}
+If input is English, find the most useful Thai equivalent. If Thai or romanised, teach that word directly.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error?.message || 'API error');
+
+    const raw = data.content?.find(b => b.type === 'text')?.text || '';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const lesson = JSON.parse(clean);
+
+    renderLesson(lesson);
+    addToHistory(lesson.thai || input);
+
+  } catch(err) {
+    document.getElementById('errorState').innerHTML =
+      `<strong>Couldn't load lesson.</strong> ${err.message || 'Please try again.'}`;
+    show('errorState');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function renderLesson(d) {
+  const toneColor = getToneColor(d.tone);
+
+  document.getElementById('heroSection').innerHTML = `
+    <div>
+      <span class="hero-thai">${d.thai || ''}</span>
+      <div class="hero-roman">${d.roman || ''}</div>
+      <div class="hero-english">${d.english || ''}</div>
+      <div style="margin-top:0.5rem">
+        <span class="tone-badge" style="background:${toneColor}22;border:1px solid ${toneColor}55;color:${toneColor}">
+          <span class="tone-dot" style="background:${toneColor}"></span>
+          ${d.tone || 'mid'} tone
+        </span>
+        ${d.category ? `<span style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-left:0.7rem">${d.category}</span>` : ''}
+      </div>
+    </div>
+  `;
+
+  let html = '';
+
+  if (d.lesson) html += `<div class="section">
+    <div class="section-label">Usage &amp; Lesson</div>
+    <p class="lesson-text">${d.lesson}</p>
+  </div>`;
+
+  if (d.pitfall) html += `<div class="section">
+    <div class="section-label">⚠ Watch Out</div>
+    <div class="pitfall-box">${d.pitfall}</div>
+  </div>`;
+
+  if (d.examples?.length) {
+    const exHtml = d.examples.map(ex => `
+      <div class="example">
+        <div class="ex-thai">${ex.thai || ''}</div>
+        <div class="ex-roman">${ex.roman || ''}</div>
+        <div class="ex-english">${ex.english || ''}</div>
+      </div>`).join('');
+    html += `<div class="section">
+      <div class="section-label">Examples</div>
+      <div class="examples-list">${exHtml}</div>
+    </div>`;
+  }
+
+  if (d.related?.length) {
+    const relHtml = d.related.map(r => `
+      <div class="related-item" onclick="learnWord('${(r.thai||'').replace(/'/g,"\\'")}')">
+        <div class="rel-thai">${r.thai || ''}</div>
+        <div class="rel-english">${r.english || ''}</div>
+      </div>`).join('');
+    html += `<div class="section">
+      <div class="section-label">Related Words</div>
+      <div class="related-grid">${relHtml}</div>
+    </div>`;
+  }
+
+  document.getElementById('sectionsArea').innerHTML = html;
+  show('lessonCard');
+  document.getElementById('lessonCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function learnWord(word) {
+  document.getElementById('wordInput').value = word;
+  fetchLesson();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function addToHistory(word) {
+  history = [word, ...history.filter(w => w !== word)].slice(0, 15);
+  try { localStorage.setItem('thaiTutorHistory', JSON.stringify(history)); } catch(e) {}
+  renderHistory();
+}
+
+function renderHistory() {
+  const area = document.getElementById('historyArea');
+  const list = document.getElementById('historyList');
+  if (!history.length) { area.style.display = 'none'; return; }
+  area.style.display = 'block';
+  list.innerHTML = history.map(w =>
+    `<button class="history-item" onclick="learnWord('${w.replace(/'/g,"\\'")}')">` + w + `</button>`
+  ).join('');
+}
+
+init();
+</script>
+</body>
+</html>
